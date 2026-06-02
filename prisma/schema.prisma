@@ -1,0 +1,82 @@
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String     @id // Maps directly to Supabase Auth User UUID
+  email     String     @unique
+  name      String?
+  role      Role       @default(CUSTOMER)
+  orders    Order[]
+  cartItems CartItem[]
+  createdAt DateTime   @default(now())
+}
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+model Product {
+  id           String      @id
+  name         String
+  slug         String      @unique
+  description  String
+  price        Float
+  primaryImage String
+  hoverImage   String
+  tag          String?
+  sizes        String[]
+  category     String
+  stock        Int         @default(0)
+  featured     Boolean     @default(false)
+  orderItems   OrderItem[]
+  cartItems    CartItem[]
+  createdAt    DateTime    @default(now())
+}
+
+model Order {
+  id         String      @id @default(cuid())
+  userId     String
+  user       User        @relation(fields: [userId], references: [id])
+  items      OrderItem[]
+  status     OrderStatus @default(PENDING)
+  total      Float
+  stripeId   String?
+  createdAt  DateTime    @default(now())
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  size      String
+  price     Float
+}
+
+model CartItem {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  size      String
+}
