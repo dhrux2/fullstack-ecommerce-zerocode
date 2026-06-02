@@ -82,7 +82,7 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
 
         {/* Text-Heavy Interstitial */}
         <section className="w-full px-6 py-24 md:py-32 flex justify-center text-center bg-[#2C2C2C] overflow-hidden">
-          <h3 className="reveal-el font-outfit text-3xl md:text-5xl lg:text-[54px] xl:text-6xl text-[#F5F4F0] leading-tight w-full max-w-[1400px] tracking-tight whitespace-nowrap">
+          <h3 className="reveal-el font-outfit text-3xl md:text-5xl lg:text-[54px] xl:text-6xl text-[#F5F4F0] leading-tight w-full max-w-[1400px] tracking-tight md:whitespace-nowrap">
             The quietest person in the room is wearing<br/>
             <TextType
               as="span"
@@ -109,12 +109,11 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
               </Link>
             </div>
             
-            {/* Playing Cards Fanned Layout */}
-            <div className="w-full flex justify-center items-center pt-8 pb-16 md:pt-12 md:pb-24 overflow-hidden">
+            {/* Desktop: Playing Cards Fanned Layout */}
+            <div className="hidden md:flex w-full justify-center items-center pt-12 pb-24 overflow-hidden">
               <style dangerouslySetInnerHTML={{ __html: `
                 .new-arrivals-fan .card { width: 400px !important; border-radius: 24px !important; }
                 @media (max-width: 1024px) { .new-arrivals-fan .card { width: 280px !important; } }
-                @media (max-width: 768px) { .new-arrivals-fan .card { width: 200px !important; } }
               `}} />
               {(() => {
                 const tops = featuredProducts.filter(p => p.category === 'TOPS')
@@ -128,7 +127,7 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
                       displayProducts[1].primaryImage,
                       displayProducts[1].hoverImage
                     ]}
-                    containerWidth={100} // width isn't crucial since cards are absolutely positioned
+                    containerWidth={100}
                     containerHeight={500}
                     animationDelay={0.1}
                     animationStagger={0.08}
@@ -144,6 +143,35 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
                 )
               })()}
             </div>
+
+            {/* Mobile: Horizontal Scroll Carousel */}
+            <div className="md:hidden w-full flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-6 px-6 no-scrollbar">
+              {(() => {
+                const tops = featuredProducts.filter(p => p.category === 'TOPS')
+                const displayProducts = tops.length >= 2 ? tops : featuredProducts
+                
+                // Show up to 4 images
+                const images = [
+                  displayProducts[0].primaryImage,
+                  displayProducts[0].hoverImage,
+                  displayProducts[1]?.primaryImage,
+                  displayProducts[1]?.hoverImage
+                ].filter(Boolean)
+
+                return images.map((img, idx) => (
+                  <div key={idx} className="shrink-0 w-[80vw] sm:w-[60vw] snap-center rounded-2xl overflow-hidden bg-gray-100">
+                    <Image 
+                      src={img} 
+                      alt={`New Arrival ${idx + 1}`} 
+                      width={600} 
+                      height={800} 
+                      className="w-full h-auto object-cover" 
+                      priority={idx === 0}
+                    />
+                  </div>
+                ))
+              })()}
+            </div>
           </div>
         </section>
 
@@ -151,14 +179,18 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
         <section className="w-full px-6 pt-8 md:pt-12 pb-24 md:pb-40">
           <div className="max-w-screen-2xl mx-auto reveal-el">
             <div className="group relative w-full lg:w-4/5 mx-auto bg-[#2C2C2C] overflow-hidden rounded-xl md:rounded-2xl flex flex-col items-center justify-center text-center">
-              <img 
-                src="/product_images/hoodie-urban-props-v2.png" 
-                alt="Newsletter" 
-                className="w-full h-auto opacity-30 mix-blend-screen transition-transform duration-1000 group-hover:scale-105 grayscale select-none" 
-                onContextMenu={(e) => e.preventDefault()}
-                draggable={false}
-              />
-              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center w-full h-full p-6 md:p-8">
+              <div className="absolute inset-0 z-0">
+                <Image 
+                  src="/product_images/hoodie-urban-props-v2.png" 
+                  alt="Newsletter" 
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 80vw"
+                  className="object-cover opacity-30 mix-blend-screen transition-transform duration-1000 group-hover:scale-105 grayscale select-none" 
+                  onContextMenu={(e) => e.preventDefault()}
+                  draggable={false}
+                />
+              </div>
+              <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-12 py-24 md:p-24">
                 <h3 className="font-thunder-italic text-5xl md:text-7xl lg:text-[100px] text-[#F5F4F0] mb-2 uppercase leading-none tracking-wide">Join The Club</h3>
                 <p className="font-outfit text-[#A0A0A0] text-sm md:text-base mb-6 md:mb-8 max-w-[80%] leading-relaxed">Sign up for early access to our limited drops and exclusive collections.</p>
                 <form className="w-full max-w-[280px] sm:max-w-sm flex flex-col sm:flex-row gap-4 sm:gap-6" onSubmit={(e) => e.preventDefault()}>

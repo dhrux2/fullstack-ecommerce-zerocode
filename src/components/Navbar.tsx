@@ -184,17 +184,17 @@ export default function Navbar() {
         style={{ transform: 'translateY(-100%)' }}
       >
         <div ref={linksRef} className="flex flex-col items-center space-y-6 md:space-y-8 perspective-[1000px]">
-          <Link href="/" className="font-outfit uppercase text-7xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
+          <Link href="/" className="font-outfit uppercase text-6xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
             Home
           </Link>
-          <Link href="/products" className="font-outfit uppercase text-7xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
+          <Link href="/products" className="font-outfit uppercase text-6xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
             Collection
           </Link>
-          <Link href="/about" className="font-outfit uppercase text-7xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
+          <Link href="/about" className="font-outfit uppercase text-6xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none">
             About
           </Link>
-          <Link href="/cart" className="font-outfit uppercase text-7xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none flex items-center gap-4">
-            Cart <span className="font-nohemi text-2xl md:text-3xl mb-8">({mounted ? totalItems() : 0})</span>
+          <Link href="/cart" className="font-outfit uppercase text-6xl md:text-8xl lg:text-[9rem] text-[var(--color-primary-light)] hover:text-[var(--color-accent)] transition-colors duration-300 leading-none flex items-center gap-4">
+            Cart <span className="font-nohemi text-xl md:text-3xl mb-4 md:mb-8">({mounted ? totalItems() : 0})</span>
           </Link>
         </div>
         

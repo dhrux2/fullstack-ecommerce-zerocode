@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Image from 'next/image';
 import './BounceCards.css';
 
 /**
@@ -170,7 +171,15 @@ export default function BounceCards({
           onMouseEnter={() => enableHover && pushSiblings(idx)}
           onMouseLeave={() => enableHover && resetSiblings()}
         >
-          <img className="image select-none" src={src} alt={`card-${idx}`} onContextMenu={(e) => e.preventDefault()} draggable={false} />
+          <Image 
+            src={src} 
+            alt={`card-${idx}`} 
+            fill
+            sizes="(max-width: 1024px) 280px, 400px"
+            className="image select-none object-cover" 
+            onContextMenu={(e) => e.preventDefault()} 
+            draggable={false} 
+          />
         </div>
       ))}
     </div>
