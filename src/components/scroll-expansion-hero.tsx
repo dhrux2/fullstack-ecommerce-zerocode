@@ -128,12 +128,12 @@ const ScrollExpandMedia = ({
 
             {/* Texts perfectly anchored to the edges of the expanding container */}
             {/* Zero - Top Left Wrapper */}
-            <div className={`absolute top-0 left-0 -translate-x-[40%] sm:-translate-x-[60%] md:-translate-x-[90%] -translate-y-[10%] sm:-translate-y-[20%] md:-translate-y-[30%] z-20 pointer-events-none ${
+            <div className={`absolute top-0 left-0 -translate-x-[20%] sm:-translate-x-[60%] md:-translate-x-[90%] -translate-y-[10%] sm:-translate-y-[20%] md:-translate-y-[30%] z-20 pointer-events-none ${
               textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
             }`}>
               <h2
                 ref={leftTextRef}
-                className="text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] font-thunder-italic text-[#F5F4F0] leading-[0.8]"
+                className="text-5xl sm:text-7xl md:text-[6rem] lg:text-[8rem] font-thunder-italic text-[#F5F4F0] leading-[0.8]"
                 style={{ willChange: 'opacity' }}
               >
                 {firstWord}
@@ -141,12 +141,12 @@ const ScrollExpandMedia = ({
             </div>
             
             {/* Code - Bottom Right Wrapper */}
-            <div className={`absolute bottom-0 right-0 translate-x-[40%] sm:translate-x-[60%] md:translate-x-[90%] translate-y-0 sm:translate-y-[5%] md:translate-y-[10%] z-20 pointer-events-none ${
+            <div className={`absolute bottom-0 right-0 translate-x-[20%] sm:translate-x-[60%] md:translate-x-[90%] translate-y-0 sm:translate-y-[5%] md:translate-y-[10%] z-20 pointer-events-none ${
               textBlend ? 'mix-blend-difference' : 'mix-blend-normal'
             }`}>
               <h2
                 ref={rightTextRef}
-                className="text-6xl sm:text-7xl md:text-[6rem] lg:text-[8rem] font-thunder-italic text-[#F5F4F0] leading-[0.8]"
+                className="text-5xl sm:text-7xl md:text-[6rem] lg:text-[8rem] font-thunder-italic text-[#F5F4F0] leading-[0.8]"
                 style={{ willChange: 'opacity' }}
               >
                 {restOfTitle}

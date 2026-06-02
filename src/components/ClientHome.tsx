@@ -26,7 +26,7 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
         
         <div className="w-full flex flex-col items-center justify-center mx-auto">
           <div className="reveal-el mb-8 w-full">
-            <h2 className="font-outfit text-5xl md:text-7xl lg:text-[90px] font-black tracking-tight text-black leading-none uppercase md:whitespace-nowrap flex items-baseline justify-center gap-4 md:gap-6 lg:gap-8">
+            <h2 className="font-outfit text-4xl sm:text-5xl md:text-7xl lg:text-[90px] font-black tracking-tight text-black leading-none uppercase md:whitespace-nowrap flex flex-col md:flex-row items-center md:items-baseline justify-center gap-2 md:gap-6 lg:gap-8">
               <Shuffle 
                 text="MODERN" 
                 tag="span"
@@ -57,7 +57,7 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
           </div>
         </div>
 
-        <div className="reveal-el w-full flex justify-center mt-12 md:mt-16">
+        <div className="reveal-el w-full flex justify-center mt-12 md:mt-16 hidden md:flex">
           <BounceCards 
             images={[
               '/photos/home-01.png',
@@ -82,11 +82,11 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
 
         {/* Text-Heavy Interstitial */}
         <section className="w-full px-6 py-24 md:py-32 flex justify-center text-center bg-[#2C2C2C] overflow-hidden">
-          <h3 className="reveal-el font-outfit text-3xl md:text-5xl lg:text-[54px] xl:text-6xl text-[#F5F4F0] leading-tight w-full max-w-[1400px] tracking-tight md:whitespace-nowrap">
+          <h3 className="reveal-el font-outfit text-2xl md:text-5xl lg:text-[54px] xl:text-6xl text-[#F5F4F0] leading-tight w-full max-w-[1400px] tracking-tight md:whitespace-nowrap">
             The quietest person in the room is wearing<br/>
             <TextType
               as="span"
-              className="font-thunder-italic uppercase tracking-wide text-6xl md:text-8xl lg:text-[100px] text-[#A0A0A0] mt-4 md:mt-8 block whitespace-normal leading-none"
+              className="font-thunder-italic uppercase tracking-wide text-5xl sm:text-6xl md:text-8xl lg:text-[100px] text-[#A0A0A0] mt-4 md:mt-8 block whitespace-normal leading-none"
               text={["THE LOUDEST FIT", "NOTHING EXTRA", "EVERYTHING RIGHT"]}
               cursorCharacter="|"
               cursorClassName="font-sans font-thin opacity-100"
@@ -103,7 +103,7 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
         <section className="w-full px-6 pt-32 pb-24 md:pt-64 md:pb-32">
           <div className="max-w-screen-2xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 reveal-el gap-6">
-              <h2 className="font-outfit text-6xl md:text-8xl tracking-tight">New Arrivals</h2>
+              <h2 className="font-outfit text-5xl md:text-8xl tracking-tight">New Arrivals</h2>
               <Link href="/products" className="font-outfit text-sm tracking-widest uppercase hover:text-[var(--color-accent)] transition-colors pb-2 border-b border-[var(--color-sec-600)]">
                 View All Products
               </Link>
@@ -191,8 +191,8 @@ export default function ClientHome({ featuredProducts }: { featuredProducts: any
                 />
               </div>
               <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-12 py-24 md:p-24">
-                <h3 className="font-thunder-italic text-5xl md:text-7xl lg:text-[100px] text-[#F5F4F0] mb-2 uppercase leading-none tracking-wide">Join The Club</h3>
-                <p className="font-outfit text-[#A0A0A0] text-sm md:text-base mb-6 md:mb-8 max-w-[80%] leading-relaxed">Sign up for early access to our limited drops and exclusive collections.</p>
+                <h3 className="font-thunder-italic text-5xl md:text-7xl lg:text-[100px] text-[#F5F4F0] mb-2 uppercase leading-none tracking-wide text-center">Join The Club</h3>
+                <p className="font-outfit text-[#A0A0A0] text-sm md:text-base mb-6 md:mb-8 max-w-[90%] md:max-w-[80%] leading-relaxed text-center">Sign up for early access to our limited drops and exclusive collections.</p>
                 <form className="w-full max-w-[280px] sm:max-w-sm flex flex-col sm:flex-row gap-4 sm:gap-6" onSubmit={(e) => e.preventDefault()}>
                   <input type="email" placeholder="Email Address" className="w-full sm:flex-1 bg-transparent border-b border-[#A0A0A0] focus:border-[#F5F4F0] text-[#F5F4F0] px-0 py-2 sm:py-3 outline-none font-outfit transition-colors placeholder:text-[#A0A0A0]/50 text-sm tracking-wide" />
                   <button type="submit" className="w-full sm:w-auto bg-[#F5F4F0] text-[#2C2C2C] font-outfit uppercase tracking-widest text-xs px-8 py-3 sm:py-4 hover:bg-white transition-colors font-medium">Subscribe</button>
