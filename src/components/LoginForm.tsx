@@ -12,6 +12,7 @@ export default function LoginForm() {
   const [isLogin, setIsLogin] = useState(true)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [successMessage, setSuccessMessage] = useState<string | null>(null)
   const router = useRouter()
   const supabase = createClient()
 
@@ -19,6 +20,7 @@ export default function LoginForm() {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    setSuccessMessage(null)
 
     try {
       if (isLogin) {
@@ -27,6 +29,8 @@ export default function LoginForm() {
           password,
         })
         if (error) throw error
+        router.push('/')
+        router.refresh()
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -39,10 +43,8 @@ export default function LoginForm() {
           },
         })
         if (error) throw error
-        alert('Check your email for the confirmation link.')
+        setSuccessMessage('Account created! Check your email for the confirmation link.')
       }
-      router.push('/')
-      router.refresh()
     } catch (error: any) {
       setError(error.message)
     } finally {
@@ -110,6 +112,12 @@ export default function LoginForm() {
         {error && (
           <div className="text-red-500 font-nohemi text-sm">
             {error}
+          </div>
+        )}
+
+        {successMessage && (
+          <div className="text-[var(--color-primary-dark)] font-nohemi text-sm p-4 border border-[var(--color-primary-dark)]/20 bg-[var(--color-primary-dark)]/5 rounded-md">
+            {successMessage}
           </div>
         )}
 

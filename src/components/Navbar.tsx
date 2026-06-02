@@ -122,19 +122,41 @@ export default function Navbar() {
           
           <div className="flex items-center gap-4 md:gap-6">
             {mounted && (
-              <Link 
-                href="/login" 
-                className="font-outfit text-[11px] md:text-sm tracking-[0.2em] uppercase hover:text-[var(--color-accent)] transition-colors hidden md:flex items-center gap-2"
-              >
+              <div className="relative group hidden md:block">
                 {user ? (
-                  <>
+                  <div className="cursor-pointer font-outfit text-[11px] md:text-sm tracking-[0.2em] uppercase hover:text-[var(--color-accent)] transition-colors flex items-center gap-2 py-2">
                     <UserIcon className="w-4 h-4" />
                     <span className="mt-[2px]">{user.user_metadata?.full_name?.split(' ')[0] || 'Profile'}</span>
-                  </>
+                  </div>
                 ) : (
-                  <span className="mt-[2px]">Login / Sign Up</span>
+                  <Link 
+                    href="/login" 
+                    className="font-outfit text-[11px] md:text-sm tracking-[0.2em] uppercase hover:text-[var(--color-accent)] transition-colors flex items-center gap-2 py-2"
+                  >
+                    <span className="mt-[2px]">Login / Sign Up</span>
+                  </Link>
                 )}
-              </Link>
+                
+                {user && (
+                  <div className="absolute top-full right-0 mt-2 w-48 bg-white text-black rounded shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 flex flex-col mix-blend-normal overflow-hidden pointer-events-none group-hover:pointer-events-auto">
+                    <Link href="/orders" className="px-4 py-3 font-outfit text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors border-b border-gray-100">
+                      Your Orders
+                    </Link>
+                    <Link href="/profile" className="px-4 py-3 font-outfit text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors border-b border-gray-100">
+                      Change Password
+                    </Link>
+                    <button 
+                      onClick={async () => { 
+                        await supabase.auth.signOut(); 
+                        window.location.href = '/'; 
+                      }} 
+                      className="px-4 py-3 text-left font-outfit text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors text-red-600"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             )}
             
             <button 
