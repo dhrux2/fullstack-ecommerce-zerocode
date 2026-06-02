@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Outfit } from 'next/font/google'
 import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/react'
 
 import './globals.css'
 import Navbar from '@/components/Navbar'
@@ -60,6 +61,7 @@ export default function RootLayout({
           <CookieConsent />
           <Footer />
         </SmoothScroll>
+        <Analytics />
       </body>
     </html>
   )
